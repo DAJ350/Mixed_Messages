@@ -59,5 +59,14 @@ const messageTemplates = {
     template1: `${pronoun} ${adverb} to ${verb} your ${noun}.`,
     template2: `${adjective} ${noun} is the key to ${verb} ${noun}.`,
     template3: `${pronoun} have the ${adjective} power to ${verb} ${noun} and ${verb} ${noun}.`,
-    template4: ``
+    template4: `${verb} ${noun} with ${adverb} ${verb}, and ${pronoun} will ${verb} ${noun}.`,
+    template5: `In every ${noun}, ${pronoun} must ${verb} ${noun} and ${verb} ${noun} with ${adjective} ${noun}.`,
+}
+
+function messageGenerator() {
+    const verb = null;
+    const noun = null;
+    const adjective = null;
+    const adverb = null;
+    const pronoun = null;
 }
