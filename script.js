@@ -112,7 +112,6 @@ const messageComponents = {
     "We",
     "I",
     "Your",
-    "Our",
   ],
   get randomVerb() {
     let random = Math.floor(Math.random() * this._verbs.length);
