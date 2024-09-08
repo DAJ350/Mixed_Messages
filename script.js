@@ -59,75 +59,119 @@ Steps:
 */
 
 const messageComponents = {
-  _verbs: [
-    "Unlock",
-    "Achieve",
-    "Discover",
-    "Follow",
-    "Fulfill",
-    "Shape",
-    "Pursue",
-    "Realize",
-    "Reach",
-    "Embrace",
-  ],
-  _adjectives: [
-    "Limitless",
-    "Unstoppable",
-    "Fearless",
-    "Strong",
-    "Focused",
-    "Inspired",
-    "Bold",
-    "Driven",
-    "Purposeful",
-    "Empowered",
-  ],
-  _nouns: [
-    "Success",
-    "Potential",
-    "Path",
-    "Destiny",
-    "Strength",
-    "Vision",
-    "Dreams",
-    "Purpose",
-    "Future",
-    "Growth",
-  ],
-  _adverbs: [
-    "Relentlessly",
-    "Passionately",
-    "Courageously",
-    "Confidently",
-    "Boldly",
-    "Continuously",
-    "Proudly",
-    "Persistently",
-    "Fearlessly",
-    "Purposefully",
-  ],
-  _pronouns: [
-    "You",
-    "We",
-    "I",
-    "Your",
-  ],
-  get randomVerb() {
-    let random = Math.floor(Math.random() * this._verbs.length);
-    return this["_verbs"][random];
+  verbs: {
+    _goalVerbs: [
+      "Achieve",
+      "Fulfill",
+      "Realize",
+      "Reach",
+      "Attain",
+      "Complete",
+      "Master",
+    ],
+    _actionVerbs: [
+      "Embrace",
+      "Shape",
+      "Pursue",
+      "Follow",
+      "Lead",
+      "Build",
+      "Cultivate",
+    ],
   },
-  get randomAdjective() {
-    let random = Math.floor(Math.random() * this._adjectives.length);
-    return this["_adjectives"][random];
+  adjectives: {
+    _growthAdjectives: [
+      "Strong",
+      "Fearless",
+      "Unstoppable",
+      "Bold",
+      "Driven",
+      "Resillient",
+      "Empowered",
+    ],
+    _possibilityAdjectives: [
+      "Limitless",
+      "Boundless",
+      "Infinite",
+      "Endless",
+      "Expansive",
+      "Uncharted",
+      "Wide-Open",
+    ],
   },
-  get randomNoun() {
-    let random = Math.floor(Math.random() * this._nouns.length);
-    return this["_nouns"][random];
+  nouns: {
+    _goalNouns: [
+      "Success",
+      "Potential",
+      "Dreams",
+      "Future",
+      "Vision",
+      "Purpose",
+      "Accomplishment",
+    ],
+    _journeyNouns: [
+      "Path",
+      "Journey",
+      "Road",
+      "Growth",
+      "Adventure",
+      "Experience",
+      "Challenge",
+    ],
   },
-  get randomAdverb() {
-    let random = Math.floor(Math.random() * this._adverbs.length);
-    return this["_adverbs"][random];
+  adverbs: {
+    _effortAdverbs: [
+      "Relentlessly",
+      "Passionately",
+      "Courageously",
+      "Confidently",
+      "Boldly",
+      "Tirelessly",
+      "Persistenly",
+    ],
+    _continuousAdverbs: [
+      "Continuously",
+      "Unceasingly",
+      "Steadily",
+      "Patiently",
+      "Purposefully",
+      "Determinedly",
+      "Gradually",
+    ],
+  },
+  pronouns: ["You", "We", "I", "Your"],
+
+  get randomGoalVerb() {
+    let random = Math.floor(Math.random() * this.verbs["_goalVerbs"].length);
+    return this.verbs["_goalVerbs"][random];
+  },
+  get randomActionVerb() {
+    let random = Math.floor(Math.random() * this.verbs["_actionVerbs"].length);
+    return this.verbs["_actionVerbs"][random];
+  },
+  get randomGrowthAdjective() {
+    let random = Math.floor(
+      Math.random() * this.adjectives["_growthAdjectives"].length
+    );
+    return this.adjectives["_growthAdjectives"][random];
+  },
+  get randomPossibiltyAdjective() {
+    let random = Math.floor(
+      Math.random() * this.adjectives["_possibilityAdjectives"].length
+    );
+    return this.adjectives["_possibilityAdjectives"][random];
+  },
+  get randomGoalNoun() {
+    let random = Math.floor(Math.random() * this.nouns["_goalNouns"].length);
+    return this.nouns["_goalNouns"][random];
+  },
+  get randomJourneyNoun() {
+    let random = Math.floor(Math.random() * this.nouns['_journeyNouns'].length);
+    return this.nouns["_journeyNouns"][random];
+  },
+  get randomContinuousAdverb() {
+    let random = Math.floor(Math.random() * this.adverbs["_continuousAdverbs"].length);
+    return this.adverbs["_continuousAdverbs"][random];
   },
   get randomPronoun() {
     let random = Math.floor(Math.random() * this._pronouns.length);
@@ -196,12 +240,12 @@ function generateMessage() {
 
     case 2:
       selectedTemplate = messageTemplates.template3;
-        break;
-        
+      break;
+
     case 3:
       selectedTemplate = messageTemplates.template4;
-        break;
-        
+      break;
+
     default:
       selectedTemplate = messageTemplates.template5;
       break;
