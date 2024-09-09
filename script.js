@@ -63,7 +63,7 @@ const messageComponents = {
     _goalVerbs: [
       "Achieve",
       "Fulfill",
-      "Realize",
+      "Realise",
       "Reach",
       "Attain",
       "Complete",
@@ -139,7 +139,7 @@ const messageComponents = {
       "Gradually",
     ],
   },
-  pronouns: ["You", "We", "I", "Your"],
+  pronouns: ["You", "We", "I"],
 
   get randomGoalVerb() {
     let random = Math.floor(Math.random() * this.verbs["_goalVerbs"].length);
@@ -166,92 +166,59 @@ const messageComponents = {
     return this.nouns["_goalNouns"][random];
   },
   get randomJourneyNoun() {
-    let random = Math.floor(Math.random() * this.nouns['_journeyNouns'].length);
+    let random = Math.floor(Math.random() * this.nouns["_journeyNouns"].length);
     return this.nouns["_journeyNouns"][random];
   },
   get randomContinuousAdverb() {
-    let random = Math.floor(Math.random() * this.adverbs["_continuousAdverbs"].length);
+    let random = Math.floor(
+      Math.random() * this.adverbs["_continuousAdverbs"].length
+    );
     return this.adverbs["_continuousAdverbs"][random];
   },
   get randomPronoun() {
-    let random = Math.floor(Math.random() * this._pronouns.length);
-    return this["_pronouns"][random];
+    let random = Math.floor(Math.random() * this.pronouns.length);
+    return this["pronouns"][random];
   },
 };
 
+function getUniqueWord(wordArray, wordCount) {
+  const uniqueWords = new Set();
+  while (uniqueWords.size < wordCount) {
+    uniqueWords.add(wordArray[Math.floor(Math.random() * wordArray.length)]);
+  }
+  return [...uniqueWords];
+}
+
+
 function generateMessage() {
-  let selectedTemplate = null;
-  let verb = messageComponents.randomVerb;
-  let verb2 = messageComponents.randomVerb;
-  let verb3 = messageComponents.randomVerb;
-  let verb4 = messageComponents.randomVerb;
-  let noun = messageComponents.randomNoun;
-  let noun2 = messageComponents.randomNoun;
-  let noun3 = messageComponents.randomNoun;
-  let noun4 = messageComponents.randomNoun;
-  let adjective = messageComponents.randomAdjective;
-  let adverb = messageComponents.randomAdverb;
-  let pronoun = messageComponents.randomPronoun;
+  
+  const goalVerbArray = getUniqueWord(messageComponents.verbs["_goalVerbs"], 4);
+  const actionVerbArray = getUniqueWord(messageComponents.verbs["_actionVerbs"], 4);
 
-  // Unique Verbs
-  while (verb2 == verb || verb2 == verb3) {
-    verb2 = messageComponents.randomVerb;
-  }
+  const effortAdverbArray = getUniqueWord(messageComponents.adverbs["_effortAdverbs"], 4);
+  const continuousAdverbArray = getUniqueWord(messageComponents.adverbs["_continuousAdverbs"], 4);
 
-  while (verb3 == verb || verb3 == verb2) {
-    verb3 = messageComponents.randomVerb;
-  }
+  const goalNounArray = getUniqueWord(messageComponents.nouns["_goalNouns"], 4);
+  const journeyNounArray = getUniqueWord(messageComponents.nouns["_journeyNouns"], 4);
 
-  while (verb4 == verb || verb4 == verb2 || verb4 == verb3) {
-    verb4 = messageComponents.randomVerb;
-  }
+  const growthAdjectiveArray = getUniqueWord(messageComponents.adjectives["_growthAdjectives"], 4);
+  const possibilityAdjectiveArray = getUniqueWord(messageComponents.adjectives["_possibilityAdjectives"], 4);
 
-  // Uniques Nouns
-  while (noun2 == noun || noun2 == noun3) {
-    noun2 = messageComponents.randomNoun;
-  }
+  const pronoun = messageComponents.randomPronoun;
 
-  while (noun3 == noun || noun3 == noun2) {
-    noun3 = messageComponents.randomNoun;
-  }
+  const messageTemplates = [
+    `you ${actionVerbArray[0]} ${effortAdverbArray[0]} to ${goalVerbArray[1]} your ${goalNounArray[0]}.`,
+    // template2: `${} ${journeyNounArray[0]} is the key to ${verb}ing your ${noun2}.`,
+    `${pronoun} have the ${growthAdjectiveArray[0]} power to ${goalVerbArray[0]} ${goalNounArray[0]} and ${goalVerbArray[1]} ${goalNounArray[1]}.`,
+    `${actionVerbArray[0]} the ${journeyNounArray[0]} and ${continuousAdverbArray[0]} ${actionVerbArray[1]}, eventually ${pronoun} will ${goalVerbArray[0]} your ${goalNounArray[0]}.`,
+   // template5: `In every ${noun}, ${pronoun} must ${verb} ${noun2} and ${verb2} ${noun3} with ${adjective} ${noun4}.`,]
+  ];
 
-  while (noun4 == noun || noun4 == noun2 || noun4 == noun3) {
-    noun4 = messageComponents.randomNoun;
-  }
+  const selectedTemplate =
+    messageTemplates[Math.floor(Math.random() * messageTemplates.length)];
 
-  const messageTemplates = {
-    template1: `You ${verb} ${adverb} to ${verb2} your ${noun}.`,
-    template2: `${adjective} ${noun} is the key to ${verb}ing your ${noun2}.`,
-    template3: `${pronoun} have the ${adjective} power to ${verb} ${noun} and ${verb2} ${noun2}.`,
-    template4: `${verb} ${noun} with ${adverb} ${verb2}, and ${pronoun} will ${verb3} ${noun2}.`,
-    template5: `In every ${noun}, ${pronoun} must ${verb} ${noun2} and ${verb2} ${noun3} with ${adjective} ${noun4}.`,
-  };
+  const message = `${selectedTemplate[0].toUpperCase()}${selectedTemplate.slice(1)}`;
 
-  const randomiser = Math.floor(Math.random() * 5);
-
-  switch (randomiser) {
-    case 0:
-      selectedTemplate = messageTemplates.template1;
-      break;
-
-    case 1:
-      selectedTemplate = messageTemplates.template2;
-      break;
-
-    case 2:
-      selectedTemplate = messageTemplates.template3;
-      break;
-
-    case 3:
-      selectedTemplate = messageTemplates.template4;
-      break;
-
-    default:
-      selectedTemplate = messageTemplates.template5;
-      break;
-  }
-
-  const message = selectedTemplate;
   return message;
 }
 
