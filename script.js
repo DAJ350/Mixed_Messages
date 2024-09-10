@@ -210,7 +210,7 @@ function generateMessage() {
     `you ${actionVerbArray[0]} ${effortAdverbArray[0]} to ${goalVerbArray[1]} your ${goalNounArray[0]}.`,
     // template2: `${} ${journeyNounArray[0]} is the key to ${verb}ing your ${noun2}.`,
     `${pronoun} have the ${growthAdjectiveArray[0]} power to ${goalVerbArray[0]} ${goalNounArray[0]} and ${goalVerbArray[1]} ${goalNounArray[1]}.`,
-    `${actionVerbArray[0]} the ${journeyNounArray[0]} and ${continuousAdverbArray[0]} ${actionVerbArray[1]}, eventually ${pronoun} will ${goalVerbArray[0]} your ${goalNounArray[0]}.`,
+    `${actionVerbArray[0]} the ${journeyNounArray[0]} and ${continuousAdverbArray[0]} ${actionVerbArray[1]}, eventually you will ${goalVerbArray[0]} your ${goalNounArray[0]}.`,
    // template5: `In every ${noun}, ${pronoun} must ${verb} ${noun2} and ${verb2} ${noun3} with ${adjective} ${noun4}.`,]
   ];
 
